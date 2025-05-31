@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +50,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.app_name);
-        }
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar, R.string.open_nav, R.string.close_nav);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        // Bỏ dòng này nếu không cần icon mặc định (vì ta dùng nút custom)
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+
+        // Lấy nút menu từ toolbar
+        ImageButton btnMenu = toolbar.findViewById(R.id.btn_menu);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mở Drawer
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new ShopActivity()).commit();
@@ -66,37 +74,32 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setBackground(null);
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
-                int id = item.getItemId();
+            int id = item.getItemId();
 
-                if (id == R.id.shop) {
-                    replaceFragment(new ShopActivity());
-                } else if (id == R.id.schedule) {
-                    replaceFragment(new ScheduleActivity());
-                } else if (id == R.id.news) {
-                    replaceFragment(new NewsActivity());
-                } else if (id == R.id.profile) {
-                    replaceFragment(new ProfileActivity());
-                }
+            if (id == R.id.shop) {
+                replaceFragment(new ShopActivity());
+            } else if (id == R.id.schedule) {
+                replaceFragment(new ScheduleActivity());
+            } else if (id == R.id.news) {
+                replaceFragment(new NewsActivity());
+            } else if (id == R.id.profile) {
+                replaceFragment(new ProfileActivity());
+            }
 
-                return true;
-            });
+            return true;
+        });
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showBottomDialog();
             }
-        });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, android.R.color.white));
-        }
+        });*/
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
     }
-    //Outside OnCreate
-    private  void replaceFragment(Fragment fragment) {
+
+    // Outside onCreate
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
