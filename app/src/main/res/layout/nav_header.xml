@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rebound Piercing"
+        android:fontFamily="@font/montserrat_bold"
         android:textColor="#847c4a"
         android:textStyle="bold"/>
 
@@ -24,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="reboundpiercing@gmail.com"
+        android:fontFamily="@font/montserrat_bold"
         android:textColor="#847c4a"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"/>
