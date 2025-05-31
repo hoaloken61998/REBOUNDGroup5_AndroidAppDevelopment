@@ -11,10 +11,12 @@
         android:id="@+id/schedule"
         android:title="Schedule"
         android:icon="@mipmap/ic_schedule"/>
+
     <item
         android:id="@+id/news"
         android:title="News"
         android:icon="@mipmap/ic_news" />
+
     <item
         android:id="@+id/profile"
         android:title="Profile"
