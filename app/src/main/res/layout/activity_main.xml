@@ -96,8 +96,8 @@
                 app:menu="@menu/bottom_menu"
                 app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
                 app:itemTextAppearanceInactive="@style/BottomNavTextAppearance"
-                app:itemIconTint="#847c4a"
-                app:itemTextColor="#847c4a"/>
+                app:itemIconTint="@color/bottom_nav_item_color"
+                app:itemTextColor="@color/bottom_nav_item_color" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
 
