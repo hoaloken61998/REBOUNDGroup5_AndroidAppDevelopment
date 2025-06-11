@@ -1,6 +1,7 @@
 package com.rebound.main;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,13 +11,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.rebound.R;
 
-public class SearchNoResultActivity extends AppCompatActivity {
-
+public class NoNotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_search_no_result);
+        setContentView(R.layout.activity_no_notification);
+
+        // Đặt sau setContentView để layout đã được inflate
+        ImageView imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(v -> finish()); // Quay lại
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

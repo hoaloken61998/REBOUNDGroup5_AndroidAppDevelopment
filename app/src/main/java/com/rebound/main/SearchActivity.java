@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,17 +44,22 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-
         searchView = findViewById(R.id.searchView);
         searchRecentContainer = findViewById(R.id.searchRecentContainer);
         searchPopularContainer = findViewById(R.id.searchPopularContainer);
 
-
         prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        loadData();
-        updateUI();
+        loadData(); // Load dữ liệu đã lưu
 
+        // ✅ Xử lý intent query trước
+        String incomingQuery = getIntent().getStringExtra("query");
+        if (incomingQuery != null && !incomingQuery.trim().isEmpty()) {
+            handleSearch(incomingQuery.trim()); // handleSearch() sẽ tự gọi updateUI()
+        } else {
+            updateUI(); // Nếu không có query mới, cập nhật UI từ dữ liệu cũ
+        }
 
+        // Thiết lập listener cho searchView
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -62,13 +68,14 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
 
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });
     }
+
+
 
 
     private void handleSearch(String query) {
@@ -129,6 +136,8 @@ public class SearchActivity extends AppCompatActivity {
         chip.setLayoutParams(lp);
         return chip;
     }
+
+    //Set sự kiện cho nó Back
 
 
     private void saveData() {

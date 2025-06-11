@@ -94,11 +94,11 @@
             android:name=".login.HelpCenterActivity"
             android:exported="false" />
         <activity
-            android:name=".main.NavBarActivity"
+            android:name=".login.WelcomeActivity"
             android:exported="false"/>
 
         <activity
-            android:name=".login.WelcomeActivity"
+            android:name=".main.NavBarActivity"
             android:exported="true">
 
             <intent-filter>

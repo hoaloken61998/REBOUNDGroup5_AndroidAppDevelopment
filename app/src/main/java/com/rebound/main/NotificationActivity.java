@@ -1,5 +1,7 @@
 package com.rebound.main;
 import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,10 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
+
+        // Gắn sự kiện cho nút Back
+        ImageView imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(v -> finish()); // Quay lại
 
         recyclerViewNotification = findViewById(R.id.recyclerViewNotification);
         recyclerViewNotification.setLayoutManager(new LinearLayoutManager(this));

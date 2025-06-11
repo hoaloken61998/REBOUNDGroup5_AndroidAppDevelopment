@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import com.rebound.R;
@@ -15,7 +17,13 @@ public class ReservationDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.reservation_popup, container, false);
+        View view = inflater.inflate(R.layout.reservation_popup, container, false);
+
+        // Xử lý khi bấm nút đóng (close icon)
+        ImageView imgClose = view.findViewById(R.id.imgClose);
+        imgClose.setOnClickListener(v -> dismiss()); // Đóng dialog, quay lại ScheduleServiceActivity
+
+        return view;
     }
 
     @Override

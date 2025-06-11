@@ -1,5 +1,6 @@
 package com.rebound.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ public class NavBarActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null){
-            replaceFragment(new ShopNavActivity());
+            replaceFragment(new MainPageActivity());
         }
 
         bottomNavigationView.setBackground(null);
@@ -50,9 +51,9 @@ public class NavBarActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.txtNavigationShop) {
-                replaceFragment(new ShopNavActivity());
+                replaceFragment(new MainPageActivity());
             } else if (id == R.id.txtNavigationSchedule) {
-                replaceFragment(new ScheduleNavActivity());
+                replaceFragment(new ScheduleServiceActivity());
             } else if (id == R.id.txtNavigationNews) {
                 replaceFragment(new NewsNavActivity());
             } else if (id == R.id.txtNavigationProfile) {

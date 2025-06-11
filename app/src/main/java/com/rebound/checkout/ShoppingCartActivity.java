@@ -3,6 +3,7 @@ package com.rebound.checkout;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,11 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         btnCheckout.setOnClickListener(v -> {
             Toast.makeText(this, "Total: " + format(cartData.getTotal()), Toast.LENGTH_SHORT).show();
+        });
+
+        ImageView imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(v -> {
+            finish(); // Đóng Activity và quay về màn hình trước
         });
     }
 
