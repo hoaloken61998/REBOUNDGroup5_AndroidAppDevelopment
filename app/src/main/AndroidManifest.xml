@@ -23,9 +23,9 @@
         <activity
             android:name=".main.NewsActivity"
             android:exported="false" />
-        <activity
+        <!--<activity
             android:name=".main.MainPageActivity"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".checkout.ShoppingCartActivity"
             android:exported="false" />
@@ -47,9 +47,9 @@
         <activity
             android:name=".main.ProductDetailActivity"
             android:exported="false" />
-        <activity
+        <!--<activity
             android:name=".main.ScheduleServiceActivity"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".main.SearchNoResultActivity"
             android:exported="false" />

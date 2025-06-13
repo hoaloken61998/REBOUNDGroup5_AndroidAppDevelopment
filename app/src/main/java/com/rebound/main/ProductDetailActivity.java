@@ -1,5 +1,6 @@
 package com.rebound.main;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -69,11 +70,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         heartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isHearted = !isHearted; // Đảo trạng thái
+                isHearted = !isHearted;
                 if (isHearted) {
-                    heartIcon.setImageResource(R.mipmap.ic_heart_black); // đổi icon sang đen
+                    heartIcon.setImageResource(R.drawable.ic_heart_filled); // icon màu EEE3B3
                 } else {
-                    heartIcon.setImageResource(R.mipmap.ic_heart); // trở lại icon ban đầu
+                    heartIcon.setImageResource(R.mipmap.ic_heart); // icon gốc trong mipmap
                 }
             }
         });
