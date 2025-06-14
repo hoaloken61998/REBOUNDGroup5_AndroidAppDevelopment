@@ -628,10 +628,10 @@
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:strokeColor="#AB9E67"
-            app:strokeWidth="0.5dp"
+            app:strokeColor="#BEB488"
+            app:strokeWidth="1dp"
             android:layout_gravity="center_horizontal"
-            app:cornerRadius="10dp" />
+            app:cornerRadius="10dp"/>
 
     </LinearLayout>
 </ScrollView>
