@@ -73,6 +73,12 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //Set sự kiện cho nó Back
+        ImageView imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(v -> {
+            finish(); // Đóng Activity và quay về màn hình trước
+        });
     }
 
 

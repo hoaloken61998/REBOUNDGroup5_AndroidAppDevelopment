@@ -49,16 +49,9 @@ public class MainPageActivity extends Fragment {
 
         // Gắn sự kiện cho imgBell
         ImageView imgBell = view.findViewById(R.id.imgBell);
-        imgBell.setOnClickListener(v -> {
-            //Nếu mở màn hình có thông báo thì là True, còn không thì fasle
-            boolean hasNotification = true;
-            Intent intent = hasNotification ?
-                    new Intent(requireContext(), NotificationActivity.class)
-                    : new Intent(requireContext(), NoNotificationActivity.class);
-            startActivity(intent);
-        });
+        imgBell.setOnClickListener(v -> openNotification());
 
-        //Gán mở Shopping Cart
+        // Gán mở Shopping Cart
         ImageView imgCart = view.findViewById(R.id.imgMainPageShoppingCart);
         imgCart.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), ShoppingCartActivity.class);
@@ -68,14 +61,17 @@ public class MainPageActivity extends Fragment {
         // Gắn sự kiện cho SearchView
         SearchView searchView = view.findViewById(R.id.search_view);
 
-        // Gắn sự kiện khi nhấn vào toàn bộ thanh
-        searchView.setOnClickListener(v -> {
-            boolean hasData = checkIfHasSearchData();
+        // Khi người dùng chạm vào thanh tìm kiếm (chưa nhập gì)
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus && searchView.getQuery().toString().isEmpty()) {
+                boolean hasData = checkIfHasSearchData();
 
-            Intent intent = new Intent(requireContext(),
-                    hasData ? SearchActivity.class : SearchNoResultActivity.class);
+                Intent intent = new Intent(requireContext(),
+                        hasData ? SearchActivity.class : SearchNoResultActivity.class);
 
-            startActivity(intent);
+                searchView.clearFocus(); // tránh mở bàn phím
+                startActivity(intent);
+            }
         });
 
         // Khi người dùng nhập và nhấn "Tìm"
@@ -91,12 +87,20 @@ public class MainPageActivity extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Nếu bạn có Search Suggestion có thể xử lý tại đây
+                // Nếu bạn có Search Suggestion thì xử lý ở đây
                 return false;
             }
         });
 
         return view;
+    }
+
+    // Hàm kiểm tra thông báo và mở màn hình phù hợp
+    private void openNotification() {
+        boolean hasNotification = true; // TODO: Thay bằng kiểm tra thật
+        Intent intent = new Intent(requireContext(),
+                hasNotification ? NotificationActivity.class : NoNotificationActivity.class);
+        startActivity(intent);
     }
 
     // Kiểm tra xem có dữ liệu tìm kiếm gần đây không
